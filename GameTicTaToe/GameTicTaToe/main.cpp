@@ -66,9 +66,17 @@ void printArray() {
 
 	for (int i = 0; i < Rows; i++) {
 		for (int j = 0; j < Cols; j++) {
-			cout << A[i][j] << "|";
+			if (A[i][j] == 1)
+				cout << "X";
+			else if (A[i][j] == 2)
+				cout << "O";
+				else
+					cout << " ";
+			cout << " | ";
 		}
 		cout << endl;
+		
+
 	}
 }
 
@@ -172,9 +180,9 @@ void playGame() {
 		//			}
 		//		}
 
-		if (A[indexRow][indexColumn] != 0)
+		if (A[indexRow][indexColumn] != 0 || indexColumn >= Cols || indexRow >= Rows)
 		{
-			cout << "Write Again: ";
+			cout << "Write Again";
 			goto turn1;
 		}
 
@@ -212,8 +220,8 @@ void playGame() {
 		//			}
 		//		}
 
-		if (A[indexRow][indexColumn] != 0){
-			cout << "Write Again: ";
+		if (A[indexRow][indexColumn] != 0 || indexColumn >= Cols || indexRow >= Rows){
+			cout << "Write Again ";
 			goto turn2;
 		}
 
