@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#include<fstream>
+
 using namespace std;
 
 
@@ -10,13 +12,13 @@ struct Student {
 	float score;
 
 };
-Student *student = new Student[50];
 
-void printMenu();
-void input();
-void display();
-void saveToFile(string fileName);
-void loadFromFile(string fileName);
+
+void printMenu();//Set options for users
+void input(Student *,int);//Fill imformaiton of students
+void display(Student *, int);//Show informaiton of students
+void saveToFile(string );// Save information of students to file
+void loadFromFile(string );//Show information of students from file
 
 
 
@@ -34,6 +36,7 @@ void printMenu() {
 void input(Student *student, int n) {
 
 	for (int i = 0; i < n; i++) {
+		cout << "Fill information of studen " << i + 1 << endl;
 		cout << "ID:";
 		cin >> student[i].id;
 		cin.ignore();
@@ -50,9 +53,8 @@ void input(Student *student, int n) {
 
 	}
 
-
-
 }
+
 
 void display(Student *student, int n) {
 	cout << "ID\t\tFULLNAME\tSCORE" << endl;
@@ -63,7 +65,13 @@ void display(Student *student, int n) {
 }
 
 
+void saveToFile(string fileName) {
+	
+
+}
+
 int main() {
+	Student *student = new Student[50];
 	int n;
 	int choose;
 	printMenu();
@@ -86,6 +94,10 @@ int main() {
 		case 3:
 			break;
 		case 4:
+			break;
+		case 0:
+			exit(1);
+
 			break;
 
 
