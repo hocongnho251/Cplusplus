@@ -33,9 +33,9 @@ void printMenu() {
 }
 
 
-void input(Student *student, int n) {
+void input(Student *student, int numberOfStudent) {
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < numberOfStudent ; i++) {
 		cout << "Fill information of studen " << i + 1 << endl;
 		cout << "ID:";
 		cin >> student[i].id;
@@ -56,32 +56,48 @@ void input(Student *student, int n) {
 }
 
 
-void display(Student *student, int n) {
+void display(Student *student, int numberOfStudent) {
 	cout << "ID\t\tFULLNAME\tSCORE" << endl;
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < numberOfStudent; i++) {
 		cout << student[i].id << "\t\t" << student[i].name << "\t\t" << student[i].score << endl;
 	}
 
 }
 
 
-void saveToFile(Student *student,string fileName,int n) {
-	ofstream fileInput(fileName);
-	
-		for (int i = 0; i < n; i++) {
-			fileInput << student[i].id<<",";
-			fileInput << student[i].name<<",";
-			fileInput << student[i].score<<",";
-		}
-
-	fileInput.close();
+void saveToFile(Student *student, string fileName,int numberOfStudent) {
+	ofstream fileOutPut(fileName);
+	//fileOutPut.open("file.txt", ios_base::in);
+	fileOutPut << numberOfStudent<<endl;
+	for (int i = 0; i < numberOfStudent; i++) {
+		fileOutPut << student[i].id<<",";
+		fileOutPut << student[i].name<<",";
+		fileOutPut << student[i].score << endl;
+	}
 }
 
 
+void loadFromFile(Student *student, string fileName,int numberOfStudent) {
+	ifstream fileInput(fileName);
+	string id, name, score;
+	fileInput >> numberOfStudent;
+	for (int i = 0; i <=1; i++) {
+		getline(fileInput, id, ',');	
+		student[i].id = stoi(id);
+		cout << student[i].id << "\t\t";
+		getline(fileInput, name, ',');
+		student[i].name = name;
+		cout << student[i].name <<"\t\t";
+		getline(fileInput, score);
+		student[i].score = stoi(score);
+		cout << student[i].score << endl;
+	}
+	
+}
 
 int main() {
 	Student *student = new Student[50];
-	int n;
+	int numberOfStudent;
 	int choose;
 	printMenu();
 
@@ -94,17 +110,17 @@ int main() {
 		case 1:
 
 			cout << "Number of students :";
-			cin >> n;
-			input(student, n);
+			cin >> numberOfStudent;
+			input(student, numberOfStudent);
 			break;
 		case 2:
-			display(student, n);
+			display(student, numberOfStudent);
 			break;
 		case 3:
-			saveToFile(student, "file.txt",n);
+			saveToFile(student,"file.txt", numberOfStudent);
 			break;
 		case 4:
-			loadFromFile(student, "file.txt",n);
+			loadFromFile(student, "file.txt", numberOfStudent);
 			break;
 		case 0:
 			exit(1);
