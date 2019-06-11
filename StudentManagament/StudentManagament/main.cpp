@@ -17,8 +17,8 @@ struct Student {
 void printMenu();//Set options for users
 void input(Student *,int);//Fill imformaiton of students
 void display(Student *, int);//Show informaiton of students
-void saveToFile(string );// Save information of students to file
-void loadFromFile(string );//Show information of students from file
+void saveToFile(Student *,string,int );// Save information of students to file
+void loadFromFile(Student *, string, int);//Show information of students from file
 
 
 
@@ -65,10 +65,19 @@ void display(Student *student, int n) {
 }
 
 
-void saveToFile(string fileName) {
+void saveToFile(Student *student,string fileName,int n) {
+	ofstream fileInput(fileName);
 	
+		for (int i = 0; i < n; i++) {
+			fileInput << student[i].id<<",";
+			fileInput << student[i].name<<",";
+			fileInput << student[i].score<<",";
+		}
 
+	fileInput.close();
 }
+
+
 
 int main() {
 	Student *student = new Student[50];
@@ -92,8 +101,10 @@ int main() {
 			display(student, n);
 			break;
 		case 3:
+			saveToFile(student, "file.txt",n);
 			break;
 		case 4:
+			loadFromFile(student, "file.txt",n);
 			break;
 		case 0:
 			exit(1);
