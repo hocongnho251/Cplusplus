@@ -15,10 +15,10 @@ struct Student {
 
 
 void printMenu();//Set options for users
-void input(Student *,int);//Fill imformaiton of students
+void input(Student *,int,int &);//Fill imformaiton of students
 void display(Student *, int);//Show informaiton of students
 void saveToFile(Student *,string,int );// Save information of students to file
-void loadFromFile(Student *, string, int);//Show information of students from file
+void loadFromFile(Student *, string);//Show information of students from file
 
 
 
@@ -33,9 +33,9 @@ void printMenu() {
 }
 
 
-void input(Student *student, int numberOfStudent) {
+void input(Student *student, int numberOfStudent,int &indexBefore) {
 
-	for (int i = 0; i < numberOfStudent ; i++) {
+	for (int i = indexBefore; i <( numberOfStudent + indexBefore); i++) {
 		cout << "Fill information of studen " << i + 1 << endl;
 		cout << "ID:";
 		cin >> student[i].id;
@@ -49,9 +49,9 @@ void input(Student *student, int numberOfStudent) {
 				cout << "Wrong, please input score again:";
 			else
 				break;
-		}
-
+		}	
 	}
+	indexBefore += numberOfStudent;
 
 }
 
@@ -67,71 +67,71 @@ void display(Student *student, int numberOfStudent) {
 
 void saveToFile(Student *student, string fileName,int numberOfStudent) {
 	ofstream fileOutPut(fileName);
-	//fileOutPut.open("file.txt", ios_base::in);
 	fileOutPut << numberOfStudent<<endl;
-	for (int i = 0; i < numberOfStudent; i++) {
-		fileOutPut << student[i].id<<",";
-		fileOutPut << student[i].name<<",";
-		fileOutPut << student[i].score << endl;
-	}
+	
+		for (int i = 0; i < numberOfStudent; i++) {
+			fileOutPut << student[i].id << ",";
+			fileOutPut << student[i].name << ",";
+			fileOutPut << student[i].score << endl;
+		}
+		cout << "Save to file succesful"<<endl;
 }
 
 
-void loadFromFile(Student *student, string fileName,int numberOfStudent) {
+
+
+void loadFromFile(Student *student, string fileName) {
+	int numberOfStudentInFile;
 	ifstream fileInput(fileName);
-	string id, name, score;
-	fileInput >> numberOfStudent;
-	for (int i = 0; i <=1; i++) {
-		getline(fileInput, id, ',');	
-		student[i].id = stoi(id);
+	string tempID, tempName, tempScore;
+	fileInput >> numberOfStudentInFile;
+	for (int i = 0; i <numberOfStudentInFile; i++) {
+		getline(fileInput, tempID, ',');
+		student[i].id = stoi(tempID);
 		cout << student[i].id << "\t\t";
-		getline(fileInput, name, ',');
-		student[i].name = name;
+		getline(fileInput, tempName, ',');
+		student[i].name = tempName;
 		cout << student[i].name <<"\t\t";
-		getline(fileInput, score);
-		student[i].score = stoi(score);
+		getline(fileInput, tempScore);
+		student[i].score = stof(tempScore);
 		cout << student[i].score << endl;
 	}
-	
 }
+
 
 int main() {
 	Student *student = new Student[50];
-	int numberOfStudent;
+	int numberOfStudent,indexBefore=0;
 	int choose;
 	printMenu();
 
 	while (1) {
-
-
 		cout << "Your choose :";
 		cin >> choose;
 		switch (choose) {
 		case 1:
-
 			cout << "Number of students :";
 			cin >> numberOfStudent;
-			input(student, numberOfStudent);
+			input(student, numberOfStudent, indexBefore);
 			break;
 		case 2:
-			display(student, numberOfStudent);
+			display(student, indexBefore);
 			break;
 		case 3:
-			saveToFile(student,"file.txt", numberOfStudent);
+			saveToFile(student,"file.txt", indexBefore);
 			break;
 		case 4:
-			loadFromFile(student, "file.txt", numberOfStudent);
+			loadFromFile(student, "file.txt");
 			break;
 		case 0:
 			exit(1);
-
 			break;
-
-
 		default:
+			exit(1);
 			break;
 		}
 	}
+	delete student;
 
 	return 0;
 }
