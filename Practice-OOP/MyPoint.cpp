@@ -16,6 +16,7 @@ MyPoint::MyPoint(int _mPosX, int _mPosY) {
 	mPosY = _mPosY;
 }
 
+
 void MyPoint::Display() {
 
 	cout << "Value of mPosX is :" << mPosX << endl;
