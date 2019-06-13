@@ -16,11 +16,11 @@ public:
 	void LoadADNInformation();//  Load information from file ATGX.bin
 	int ReduceReistance(int medicine_resistance);// Check reistance of virus
 
-//protected:
-//	virtual void  DoBorn() = 0;
-//	virtual void  DoClone() = 0;
-//	virtual void  DoDie() = 0;
-//	virtual void  InitResistance() = 0;
+protected:
+	virtual void  DoBorn() = 0;
+	virtual void  DoClone() = 0;
+	virtual void  DoDie() = 0;
+	virtual void  InitResistance() = 0;
 
 };
 

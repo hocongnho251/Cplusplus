@@ -17,6 +17,10 @@ MyVirus::~MyVirus()
 {
 }
 
+MyVirus::MyVirus(const MyVirus *myvirus) {
+
+}
+
 void MyVirus::Setm_dna(char* m_dna){
 	this->m_dna = m_dna;
 
@@ -46,14 +50,18 @@ void MyVirus::LoadADNInformation() {
 		}
 		c[temp.size()] = '\0';
 		this->Setm_dna(c);
-		cout << m_dna;
+		//cout << m_dna;
 
-		
-	
 	}
 	else {
 		cout << "Open file ERRO"<< endl;
 	}
 	
+}
+
+int MyVirus::ReduceReistance(int medicine_resistance){
+	if (m_resistance <= 0) {
+
+	}
 }
 
