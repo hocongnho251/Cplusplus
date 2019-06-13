@@ -12,8 +12,8 @@ MyPoint::MyPoint() {
 
 
 MyPoint::MyPoint(int _mPosX, int _mPosY) {
-	this->mPosX = _mPosX;
-	this->mPosY = _mPosY;
+	mPosX = _mPosX;
+	mPosY = _mPosY;
 }
 
 void MyPoint::Display() {
