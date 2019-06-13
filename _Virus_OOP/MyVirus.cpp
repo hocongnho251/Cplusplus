@@ -2,6 +2,7 @@
 #include <iostream>
 #include<fstream>
 #include<string>
+#include<string.h>
 
 using namespace std;
 
@@ -35,8 +36,23 @@ int MyVirus::Getm_resistance() {
 
 void MyVirus::LoadADNInformation() {
 	ifstream fileInPut("ATGX.bin");
+	string temp;
 	if (fileInPut.is_open()) {
-		fileInPut >> m_dna;
+		getline(fileInPut, temp, ' ');
+
+		char *c = new char[temp.size() + 1];
+		for (int i = 0; i < temp.size(); i++){
+			c[i] = temp[i];
+		}
+		c[temp.size()] = '\0';
+		this->Setm_dna(c);
+		cout << m_dna;
+
+		
+	
+	}
+	else {
+		cout << "Open file ERRO"<< endl;
 	}
 	
 }
