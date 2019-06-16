@@ -1,4 +1,7 @@
 #pragma once
+#include <list>
+
+using namespace std;
 class MyVirus
 {
 protected:
@@ -18,7 +21,7 @@ public:
 
 protected:
 	virtual void  DoBorn() = 0;
-	virtual MyVirus*  DoClone() = 0;
+	virtual list<MyVirus*>  DoClone() = 0;
 	virtual void  DoDie() = 0;
 	virtual int  InitResistance(int n1,int n2) = 0;
 
