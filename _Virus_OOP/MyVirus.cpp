@@ -17,7 +17,9 @@ MyVirus::~MyVirus()
 {
 }
 
-MyVirus::MyVirus(const MyVirus *myvirus) {
+MyVirus::MyVirus( MyVirus *myvirus) {
+	m_dna = myvirus->m_dna;
+	m_resistance = myvirus->m_resistance;
 
 }
 
@@ -43,7 +45,7 @@ void MyVirus::LoadADNInformation() {
 	string temp;
 	if (fileInPut.is_open()) {
 		getline(fileInPut, temp, ' ');
-
+		//Convert string to char*
 		char *c = new char[temp.size() + 1];
 		for (int i = 0; i < temp.size(); i++){
 			c[i] = temp[i];
@@ -59,9 +61,10 @@ void MyVirus::LoadADNInformation() {
 	
 }
 
-int MyVirus::ReduceReistance(int medicine_resistance){
+void MyVirus::ReduceReistance(int medicine_resistance){
+	m_resistance -= medicine_resistance;
 	if (m_resistance <= 0) {
-
+	
 	}
 }
 
