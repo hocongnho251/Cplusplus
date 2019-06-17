@@ -22,12 +22,14 @@
     <ClInclude Include="DengueVirus.h" />
     <ClInclude Include="FluVirus.h" />
     <ClInclude Include="MyVirus.h" />
+    <ClInclude Include="Patient.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DengueVirus.cpp" />
     <ClCompile Include="FluVirus.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyVirus.cpp" />
+    <ClCompile Include="Patient.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C873E964-5837-4408-AEFF-C26AEC09E4A4}</ProjectGuid>

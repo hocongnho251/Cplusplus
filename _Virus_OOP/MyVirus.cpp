@@ -3,6 +3,7 @@
 #include<fstream>
 #include<string>
 #include<string.h>
+#include"Patient.h"
 
 using namespace std;
 
@@ -61,10 +62,7 @@ void MyVirus::LoadADNInformation() {
 	
 }
 
-void MyVirus::ReduceReistance(int medicine_resistance){
-	m_resistance -= medicine_resistance;
-	if (m_resistance <= 0) {
-	
-	}
+int MyVirus::ReduceReistance(int medicine_resistance){
+	return m_resistance -= medicine_resistance;
 }
 

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include<iostream>
+#include"Patient.h"
 
 using namespace std;
 
@@ -9,7 +10,8 @@ using namespace std;
 
 FluVirus::FluVirus()
 {
-	DoBorn();
+	this->DoBorn();
+	this->InitResistance();
 
 }
 
@@ -40,20 +42,23 @@ void FluVirus::DoBorn() {
 	srand(time(NULL));
 	m_color = rand() % 2;
 	if (m_color == 0) {
-		this->Setm_color(0xff0000);//red virus
-		this->Setm_resistance(InitResistance(10, 20));//set rensistance for blu virus
-
+		cout << "RED";
+		this->m_color=0xff0000;//red virus
 	}
 	else {
-		this->Setm_color(0x0000ff);//blu virus
-		this->Setm_resistance(InitResistance(10, 15));//set rensistance for blu virus
+		cout << "BLU";
+		this->m_color=0x0000ff;//blu virus
 	}
 	
 }
 
-FluVirus* FluVirus::DoClone() {
-	FluVirus * flu = new FluVirus(this);
-	return flu;
+list<MyVirus*> FluVirus::DoClone() {
+	FluVirus * flu = new FluVirus();
+	list<MyVirus*> listFlu;
+	listFlu.push_back(flu);
+	return listFlu;
+	
+
 }
 
 void FluVirus::DoDie() {
@@ -61,9 +66,13 @@ void FluVirus::DoDie() {
 	delete this;
 }
 
-int FluVirus::InitResistance(int n1, int n2) {
+void FluVirus::InitResistance() {
 	srand(time(NULL));
-	return (rand() % (n2 + 1 - n1)) + n1;
+	if (this->m_color == 0xff0000) {
+		this->m_resistance=rand() % (20 -10 +1) + 10;
+	}else {
+		this->m_resistance=rand() % (15 + 1 - 10) + 10;
+	}
 	
 }
 

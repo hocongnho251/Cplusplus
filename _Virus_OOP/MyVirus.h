@@ -17,13 +17,13 @@ public:
 	void Setm_resistance(int m_resistance);
 	int Getm_resistance();
 	void LoadADNInformation();//  Load information from file ATGX.bin
-	void ReduceReistance(int medicine_resistance);// Check reistance of virus
+	int ReduceReistance(int medicine_resistance);// Check reistance of virus
 
 protected:
 	virtual void  DoBorn() = 0;
 	virtual list<MyVirus*>  DoClone() = 0;
 	virtual void  DoDie() = 0;
-	virtual int  InitResistance(int n1,int n2) = 0;
+	virtual void  InitResistance() = 0;
 
 };
 

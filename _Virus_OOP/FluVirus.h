@@ -1,4 +1,7 @@
 #include "MyVirus.h"
+#include<list>
+
+using namespace std;
 class FluVirus:public MyVirus
 {
 private:
@@ -11,9 +14,9 @@ public:
 	void Setm_color(int m_color);
 	int Getm_color();
 	void DoBorn() override;
-	FluVirus* DoClone() override;
+	list<MyVirus*> DoClone() override;
 	void DoDie() override; 
-	int InitResistance(int a, int b) override;
+	void InitResistance() override;
 
 
 };
