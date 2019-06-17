@@ -1,9 +1,10 @@
-#include "Patient.h"
+#include"Patient.h"
 #include<ctime>
 #include"FluVirus.h"
 #include"DengueVirus.h"
 #include"MyVirus.h"
 #include<iostream>
+#include<Windows.h>
 
 using namespace std;
 
@@ -31,11 +32,13 @@ void Patient::DoStart() {
 	for (int i = 0; i < totalVirus; i++) {
 		int typeofVirus = rand() % 2;
 		if (typeofVirus == 0) {
+			Sleep(300);
 			virus = new FluVirus();
 			m_virusList.push_back(virus);
 		}
 		else {
 			virus = new DengueVirus();
+			Sleep(300);
 			m_virusList.push_back(virus);
 		}
 	}
