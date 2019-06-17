@@ -12,7 +12,7 @@ public:
 	~Patient();
 	int InitResistance();
 	void DoStart();
-	void TakeMedicine();
+	void TakeMedicine(int medicine_resistance);
 	void DoDie();
 };
 

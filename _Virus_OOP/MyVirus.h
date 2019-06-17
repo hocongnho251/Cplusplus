@@ -19,7 +19,7 @@ public:
 	void LoadADNInformation();//  Load information from file ATGX.bin
 	int ReduceReistance(int medicine_resistance);// Check reistance of virus
 
-protected:
+public:
 	virtual void  DoBorn() = 0;
 	virtual list<MyVirus*>  DoClone() = 0;
 	virtual void  DoDie() = 0;

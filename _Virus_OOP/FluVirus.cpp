@@ -39,14 +39,14 @@ int FluVirus::Getm_color() {
 
 void FluVirus::DoBorn() {
 	this->LoadADNInformation();
-	srand(time(NULL));
+	//srand(time(NULL));
 	m_color = rand() % 2;
 	if (m_color == 0) {
-		cout << "RED";
+		
 		this->m_color=0xff0000;//red virus
 	}
 	else {
-		cout << "BLU";
+		
 		this->m_color=0x0000ff;//blu virus
 	}
 	
@@ -67,11 +67,13 @@ void FluVirus::DoDie() {
 }
 
 void FluVirus::InitResistance() {
-	srand(time(NULL));
+	//srand(time(NULL));
 	if (this->m_color == 0xff0000) {
 		this->m_resistance=rand() % (20 -10 +1) + 10;
+		cout << "Resistance of RED:" << this->m_resistance << endl;
 	}else {
 		this->m_resistance=rand() % (15 + 1 - 10) + 10;
+		cout << "Resistance of BLU:" << this->m_resistance << endl;
 	}
 	
 }

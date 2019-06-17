@@ -63,6 +63,6 @@ void MyVirus::LoadADNInformation() {
 }
 
 int MyVirus::ReduceReistance(int medicine_resistance){
-	return m_resistance -= medicine_resistance;
+	return this->m_resistance -=medicine_resistance;
 }
 
