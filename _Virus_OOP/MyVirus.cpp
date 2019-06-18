@@ -53,12 +53,12 @@ void MyVirus::LoadADNInformation() {
 		}
 		c[temp.size()] = '\0';
 		this->Setm_dna(c);
-		//cout << m_dna;
-
+		delete[]c;
 	}
 	else {
 		cout << "Open file ERRO"<< endl;
 	}
+	
 	
 }
 

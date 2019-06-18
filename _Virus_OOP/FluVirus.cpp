@@ -4,9 +4,8 @@
 #include<iostream>
 #include"Patient.h"
 
+
 using namespace std;
-
-
 
 FluVirus::FluVirus()
 {
@@ -15,9 +14,8 @@ FluVirus::FluVirus()
 
 }
 
-
-FluVirus::~FluVirus(){
-	DoDie();
+ FluVirus::~FluVirus(){
+	this->DoDie();
 }
 
 FluVirus::FluVirus(FluVirus* fluVirus)  {
@@ -53,17 +51,14 @@ void FluVirus::DoBorn() {
 }
 
 list<MyVirus*> FluVirus::DoClone() {
-	FluVirus * flu = new FluVirus();
+	FluVirus * flu = new FluVirus(this);
 	list<MyVirus*> listFlu;
 	listFlu.push_back(flu);
 	return listFlu;
-	
-
 }
 
 void FluVirus::DoDie() {
-	if(!this)
-	delete this;
+	
 }
 
 void FluVirus::InitResistance() {

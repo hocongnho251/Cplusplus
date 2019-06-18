@@ -3,7 +3,7 @@
 #include"Patient.h"
 #include<iostream>
 #include<ctime>
-
+#include "vld.h"
 using namespace std;
 int main()
 {
@@ -17,9 +17,11 @@ int main()
 		if (t == 1)
 		{
 			int min = 1;
-			int max = 5;
+			int max = 50;
 			int medicine_resistance = min + (rand() % (int)(max - min + 1));
+			cout << "****Medicine-Resistance is " << medicine_resistance<<endl;
 			p.TakeMedicine(medicine_resistance);
+			
 
 		}
 	}
