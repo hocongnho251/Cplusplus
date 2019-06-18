@@ -54,10 +54,10 @@ void Patient::DoStart() {
 
 
 void Patient::TakeMedicine(int medicine_resistance) {
-	int totalResistance =0;
+	int totalResistance = 0;
 
-	for (auto position = m_virusList.begin();position!=m_virusList.end();){
-	
+	for (auto position = m_virusList.begin(); position != m_virusList.end();) {
+
 		if ((*position)->ReduceReistance(medicine_resistance) <= 0) {
 			(*position)->DoDie();
 			delete (*position);
@@ -67,24 +67,28 @@ void Patient::TakeMedicine(int medicine_resistance) {
 			list<MyVirus*> listTemp;
 			listTemp = (*position)->DoClone();
 			m_virusList.insert(position, listTemp.begin(), listTemp.end());
-
 			++position;
 		}
 	}
 
+
 	for (auto v : m_virusList) {
 		totalResistance += (v)->Getm_resistance();
 	}
+	cout << "TOTAL Resistance of VIRUS: "<<totalResistance << endl;
+	
+	if (m_virusList.empty()) {
+		cout << "Virus Clear" << endl;
+		m_stage = 0;
+	}
 
-	if (InitResistance() < totalResistance) {
+	else if (InitResistance() < totalResistance) {
 		this->DoDie();
-		
-		cout << "Patient was die"<<endl;
+
+		cout << "Patient was die" << endl;
 
 	}
-	else {
-		cout << "Patient Live"<<endl;
-	}
+	
 }
 
 

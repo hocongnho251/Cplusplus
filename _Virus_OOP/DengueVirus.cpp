@@ -29,8 +29,8 @@ void DengueVirus::DoBorn() {
 }
 
 list<MyVirus*> DengueVirus::DoClone() {
-	DengueVirus *dengue1 = new DengueVirus();
-	DengueVirus *dengue2 = new DengueVirus();
+	DengueVirus *dengue1 = new DengueVirus(this);
+	DengueVirus *dengue2 = new DengueVirus(this);
 	list<MyVirus*> listDengue;
 	listDengue.push_back(dengue1);
 	listDengue.push_back(dengue2);

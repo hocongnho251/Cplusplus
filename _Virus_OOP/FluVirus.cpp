@@ -51,7 +51,7 @@ void FluVirus::DoBorn() {
 }
 
 list<MyVirus*> FluVirus::DoClone() {
-	FluVirus * flu = new FluVirus();
+	FluVirus * flu = new FluVirus(this);
 	list<MyVirus*> listFlu;
 	listFlu.push_back(flu);
 	return listFlu;
