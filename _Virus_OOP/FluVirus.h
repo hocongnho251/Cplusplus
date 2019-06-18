@@ -9,7 +9,7 @@ private:
 
 public:
 	FluVirus();
-	~FluVirus();
+	virtual~FluVirus();
 	FluVirus(FluVirus* fluVirus);
 	void Setm_color(int m_color);
 	int Getm_color();

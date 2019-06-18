@@ -8,6 +8,7 @@
 
 using namespace std;
 
+
 Patient::Patient()
 {
 	this->m_resistance = InitResistance();
@@ -19,12 +20,17 @@ Patient::Patient()
 
 Patient::~Patient()
 {
+	this->DoDie();
+
 }
+
 
 int Patient::InitResistance() {
 	
 	return rand() % 8001 + 1000;
 }
+
+
 void Patient::DoStart() {
 	this->m_stage = 1;
 	int totalVirus = rand() % 11 + 10;
@@ -32,34 +38,36 @@ void Patient::DoStart() {
 	for (int i = 0; i < totalVirus; i++) {
 		int typeofVirus = rand() % 2;
 		if (typeofVirus == 0) {
-			Sleep(300);
+			Sleep(500);
 			virus = new FluVirus();
-			m_virusList.push_back(virus);
+			m_virusList.push_back(virus);	
 		}
 		else {
 			virus = new DengueVirus();
-			Sleep(300);
+			Sleep(500);
 			m_virusList.push_back(virus);
+	
 		}
 	}
+	
 }
+
 
 void Patient::TakeMedicine(int medicine_resistance) {
 	int totalResistance =0;
-//	auto firstPostionList = this->m_virusList.begin();
-	
+
 	for (auto position = m_virusList.begin();position!=m_virusList.end();){
-		
-		
+	
 		if ((*position)->ReduceReistance(medicine_resistance) <= 0) {
-			
 			(*position)->DoDie();
-			this->m_virusList.erase(position++);
+			delete (*position);
+			position = this->m_virusList.erase(position);
 		}
 		else {
 			list<MyVirus*> listTemp;
 			listTemp = (*position)->DoClone();
 			m_virusList.insert(position, listTemp.begin(), listTemp.end());
+
 			++position;
 		}
 	}
@@ -69,8 +77,8 @@ void Patient::TakeMedicine(int medicine_resistance) {
 	}
 
 	if (InitResistance() < totalResistance) {
-
 		this->DoDie();
+		
 		cout << "Patient was die"<<endl;
 
 	}
@@ -79,8 +87,12 @@ void Patient::TakeMedicine(int medicine_resistance) {
 	}
 }
 
+
 void Patient::DoDie() {
-	this->m_virusList.clear();
 	this->m_stage = 0;
+	for (list<MyVirus*>::iterator i = m_virusList.begin(); i != m_virusList.end();i++) {
+		delete *i;
+	}
+	m_virusList.clear();
 
 }
